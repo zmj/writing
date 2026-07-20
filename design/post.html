@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<!-- markdown converter: title -->
+<title>Falsehoods I believed about idempotency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <article>
+    <h1>Falsehoods I believed about idempotency</h1>
+    <div class="post-date">July 12, 2026</div>
+
+    <!-- markdown converter: post body starts here -->
+    <p>For years I told people that making an endpoint idempotent was mostly a matter of adding a request ID and a unique constraint. This is the kind of thing that is true in a demo and false everywhere else.</p>
+    <p>The first crack appeared when a retry arrived <em>while the original was still running</em>. The unique constraint saved the data, but the client got a 500 and retried again. Nothing was corrupted, and yet everyone involved — the client, the on-call engineer, me — believed something had gone wrong. See also <a href="https://docs.stripe.com/api/idempotent_requests">the Stripe docs on idempotency keys</a>, which quietly assume more than they state.</p>
+    <h2>The window nobody draws</h2>
+    <p>Every diagram of a retry shows two neat, sequential arrows. The failure mode lives in the gap between them, and the gap is never drawn.</p>
+    <pre><code>if seen(request_id):
+    return stored_response(request_id)
+# &lt;- the entire problem lives here
+process(request)</code></pre>
+    <p>The check and the work are separated by real time. A second request can pass the check before the first records its result. You can close the window with a lock, or shrink it with an atomic <code>insert</code>-then-process, but you cannot wish it away — and most systems I have read simply wish it away.</p>
+    <h2>What I believe now</h2>
+    <p>Idempotency is not a property you add. It is a property you prove, operation by operation, against the specific ways your system fails. The request ID is bookkeeping; the proof is the work.</p>
+    <p>Once I started drawing the gap, the fixes became obvious — and much less pleasant than a unique constraint.</p>
+    <!-- markdown converter: post body ends here -->
+
+    <footer>
+      <a href="index.html">&larr; All posts</a>
+    </footer>
+  </article>
+</main>
+</body>
+</html>
