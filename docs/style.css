@@ -57,6 +57,26 @@ article p {
   text-wrap: pretty;
 }
 
+article ul,
+article ol {
+  font-size: 17px;
+  line-height: 1.68;
+  margin: 18px 0;
+  padding-left: 24px;
+}
+article li {
+  margin: 6px 0;
+  text-wrap: pretty;
+}
+article li > ul,
+article li > ol {
+  margin: 6px 0;
+}
+/* Loose lists wrap each item in <p>; keep them from inheriting article p margins */
+article li p {
+  margin: 6px 0;
+}
+
 article h2 {
   font-size: 20px;
   font-weight: 600;
