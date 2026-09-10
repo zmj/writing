@@ -1,0 +1,13 @@
+# Silos are Ceilings
+
+Some developers greet the arrival of new AI models with a shrug. They've got a comfortable workflow that's well-served with existing models; increased intelligence and autonomy are marginal improvements at best. That mindset is alien to me. I'm constantly reevaluating how I work and what I work on to explore and exploit the capabilities of new models. I'll try to articulate why I think complacency is a mistake.
+
+First, a diagnosis: I think those developers work on granular, bounded tasks, either by personal workflow choice or organizational structure and process. "What to do?" and "What happens next?" were decided by the process surrounding the programming task. The process prioritizes [legibility](https://www.seangoedecke.com/seeing-like-a-software-company/): tasks are understandable and enumerable. More intelligence might complete tasks a little better, but they're already sized for a high probability of success; it might complete tasks faster, but overhead around the tasks (review, handoffs, dependencies, etc) already dominates the project timeline.
+
+Given that context, I can see where statements like "programming was never the hard part of the job" come from. But it's worth remembering why the process is what it is: programmer time was scarce and expensive, so understanding how that coin was spent was a core business goal. Legibility isn't a solved problem in AI-driven development, but I don't think anyone can argue that doling out bite-sized programming tasks is the only way to preserve it.
+
+Processes don't change overnight, especially when organizations are staffed to execute them. Conway's Law shapes how systems are built, not just their final form. But change does happen: lowercase "a" agile development succeeded waterfall. Something new will succeed processes that assume handoffs between silos. The competitive advantage isn't only reducing process overhead - concentrating ownership and accountability produces better results than design by committee.
+
+Unlike agile, individual developers can front-run this transition. Treat the process as a delivery contract to satisfy - a backwards compatibility layer - but stop letting it constrain the scope of a coding session.
+
+That brings me back to new model releases. Anticipating the future of software development as a profession means anticipating the capabilities of AI as a development tool. Trajectories are made of point measurements over time: each new model's improvement over its immediate predecessor. A sense of what's barely possible today is a preview of what I'll take for granted six months from now.
