@@ -1,0 +1,9 @@
+# Write More Linters
+
+These past few weeks, I've been working in a large (millions of lines), old (20 years of commits) C# codebase. It's crufty in every imaginable way: references to old issue trackers, internal library dependencies with no source available, remnants of dead integrations (even .wsdl files). Fixing the line endings touched thousands of files. Exploration is archaeology and anthropology: "when this area was written, design patterns were popular, so the thing I'm looking for probably comes from a factory somewhere.. yep, there it is.."
+
+Answering questions like, "do we do this anywhere else?" or "how common is this pattern?" via grep and inspect is fallible. I've had better results writing [custom analyzers](https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/#enforce-team-coding-standards). Let the compiler and linter do the heavy lifting of reading all the code, and inferring types and data flow over it. Don't poorly reinvent that tooling ad-hoc over plain text.
+
+Some analyzers get checked in as new rules or guidelines. Some get thrown away once they've narrowed down a broad question to a few specific call sites. Lint rules are useful on their own - more effective guidance than prompt instructions or code review feedback - but don't think only in terms of rules. The analysis that underlies linting is general purpose; treat it like a structured query engine for the codebase. Throwaway lints don't have to answer the entire question. They're worth writing to rule out entire classes of answers, and focus attention on what's left.
+
+As an aside, I think my comfort level working in codebases like this corresponds to my acceptance of AI-authored code. Logic that no present employee can remember or explain isn't a new phenomenon. It's interesting that both very old and very new codebases now carry "here be dragons" holes in the map.
